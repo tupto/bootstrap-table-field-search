@@ -28,7 +28,11 @@
         var searchParams = text.split(':');
         
         if (searchParams.length > 1 && this.options.searchFields) {
-            text = text.substring(searchParams[0].length + 1, text.length).trim();
+            text = text.substring(searchParams[0].length + 1, text.length);
+            
+            if (this.options.trimOnSearch) {
+                text = text.trim();
+            }
             
             var searchKeys = Object.keys(this.options.searchFields).map(function(key) {
                 return key.toLowerCase();
@@ -36,7 +40,6 @@
             
             if (searchKeys.indexOf(searchParams[0].toLowerCase()) != -1) {
                 searchField = this.options.searchFields[searchParams[0]];
-                console.log(searchField);
             }
         }
         
@@ -44,7 +47,9 @@
         if (searchField != null) {
             for (var i = 0; i < searchData.length; i++) {
                 if (searchData[i][searchField] != null) {
-                    if (searchData[i][searchField].toLowerCase().indexOf(text.toLowerCase()) != -1) {
+                    if (this.options.strictSearch && text.toLowerCase() == searchData[i][searchField].toLowerCase()) {
+                        this.data.push(searchData[i]);
+                    } else if (searchData[i][searchField].toLowerCase().indexOf(text.toLowerCase()) != -1) {
                         this.data.push(searchData[i]);
                     }
                 }
