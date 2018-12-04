@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="en-GB">
+<head>
+	<meta charset="UTF-8">
+	<title>Field Search Example</title>
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap-table.min.css">
+    <script src="assets/jquery.min.js"></script>
+    <script src="assets/bootstrap.min.js"></script>
+    <script src="assets/bootstrap-table.min.js"></script>
+    <script src="assets/bootstrap-table-field-search.js"></script>
+</head>
+<body>
+<div class="container">
+	<h1>Field Search Example</h1>
+    <p>Start your search with <code>name:</code>, <code>email:</code>, or <code>company:</code> to find rows matching that field.</p>
+    <table id="table">
+    </table>
+</div>
+<script>
+(function($) {
+    var $table = $('#table');
+    
+    $table.bootstrapTable({
+        search: true,
+        columns: [
+            {
+                field: 'user_name',
+                title: 'Name'
+            },
+            {
+                field: 'email_address',
+                title: 'Email Address'
+            },
+            {
+                field: 'company',
+                title: 'Company'
+            }
+        ],
+        searchFields: {
+            name: 'user_name',
+            email: 'email_address',
+            company: 'company'
+        },
+        data: [
+            {
+                user_name: 'Anne McGee',
+                email_address: 'anne@annesbakery.com',
+                company: 'Anne\'s Bakery'
+            },
+            {
+                user_name: 'James Baker',
+                email_address: 'james.baker@buildings.com',
+                company: 'Buildings Ltd.'
+            },
+            {
+                user_name: 'Anaya Patel',
+                email_address: 'anaya.patel@buildings.com',
+                company: 'Buildings Ltd.'
+            },
+            {
+                user_name: 'Bruce Plum',
+                email_address: 'bruce@annesbakery.com',
+                company: 'Anne\'s Bakery'
+            },
+            {
+                user_name: 'Peter Builder',
+                email_address: 'pbuilder@localplumbing.com',
+                company: 'Local Plumbing Co.'
+            },
+            {
+                user_name: 'Simon S. Hans',
+                email_address: 'shans@localplumbing.com',
+                company: 'Local Plumbing Co.'
+            },
+            {
+                user_name: 'Melanie Kendall',
+                email_address: 'melanie@annesbakery.com',
+                company: 'Anne\'s Bakery'
+            },
+            {
+                user_name: 'Raquel Rodriguez',
+                email_address: 'raquel@buildings.com',
+                company: 'Buildings Ltd.'
+            }
+        ]
+    });
+})(jQuery);
+</script>
+</body>
+</html>
