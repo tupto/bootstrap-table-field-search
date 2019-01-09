@@ -14,7 +14,6 @@
             return;
         }
         
-        this.data = [];
         var text = this.searchText;
         if (!text) {
             return;
